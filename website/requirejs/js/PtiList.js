@@ -1,4 +1,4 @@
-define("ListPti", [], function() {
+define("PtiList", [], function() {
 
   var selectedListeners = [];
 

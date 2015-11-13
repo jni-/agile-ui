@@ -1,12 +1,12 @@
-require(['ListPti', 'FeuillePti', 'PtiStore'], function(listPti, feuillePti, PtiStore) {
+require(['PtiList', 'PtiSheet', 'PtiStore'], function(PtiList, PtiSheet, PtiStore) {
   var ptis = PtiStore();
 
-  listPti.onPtiSelected(function(pti) {
-    feuillePti.display(pti);
+  PtiList.onPtiSelected(function(pti) {
+    PtiSheet.display(pti);
   });
 
   $(function() {
-    listPti.init(ptis);
+    PtiList.init(ptis);
   });
 
 });

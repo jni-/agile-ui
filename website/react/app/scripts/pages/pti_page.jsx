@@ -1,6 +1,6 @@
 import React from 'react';
 import PtiList from '../components/PtiList.jsx';
-import FeuillePti from '../components/FeuillePti.jsx';
+import PtiSheet from '../components/PtiSheet.jsx';
 
 class PtiPage extends React.Component {
 
@@ -21,7 +21,7 @@ class PtiPage extends React.Component {
     return (
       <div>
         <PtiList onPtiChanged={this.selectedPtiChanged.bind(this)} />
-        <FeuillePti pti={this.state.pti} onPtiUpdated={this.refreshPti.bind(this)} />
+        <PtiSheet pti={this.state.pti} onPtiUpdated={this.refreshPti.bind(this)} />
       </div>
     );
   }

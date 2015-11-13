@@ -1,4 +1,4 @@
-define("FeuillePti", ["ObservationGrid", "DirectiveGrid"], function(ObservationGrid, DirectiveGrid) {
+define("PtiSheet", ["ObservationGrid", "DirectiveGrid"], function(ObservationGrid, DirectiveGrid) {
 
   var currentPti;
 
