@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <div>
+          <div class="content">
+            <div>
+              <select class="form-control">
+              </select>
+              <div>
+                <div class="alert alert-danger">Select a PTI first</div>
+                <div id="grids" class="hide">
+                  <table id="observation-grid" class="table table-striped table-bordered table-condensed table-hover">
+                    <caption>Observations</caption>
+                    <thead>
+                      <tr>
+                        <th>Observation #</th>
+                        <th>Name</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <table id="directive-grid" class="table table-striped table-bordered table-condensed table-hover">
+                    <caption>Directives</caption>
+                    <thead>
+                      <tr>
+                        <th>Observation #</th>
+                        <th>Name</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="observationModalForm" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" role="document">
+          <div aria-label="Close" class="modal-header">
+            <button type="button" class="close">
+              <span aria-hidden="true" data-dismiss="modal" aria-label="Close">&times;</span>
+            </button>
+            <h4 class="modal-title">
+              <span>Editing: </span><span class="observation-name"></span>
+            </h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="control-label">
+                <span>Observation: </span>
+              </label>
+              <input type="text" class="form-control observation-name">
+            </div>
+            <button class="pull-right btn btn-default add-directive" type="button">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <p>Change directives</p>
+            <div class="directive-fields"></div>
+            <div class="form-group">
+              <!--<input type="text" value="Cannot go outside" class="form-control">-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/underscore.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/uuid.js"></script>
+    <script src="js/pti.js"></script>
+    <script src="js/observation.js"></script>
+    <script src="js/directive.js"></script>
+    <script src="js/pti_store.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

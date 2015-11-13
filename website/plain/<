@@ -1,0 +1,75 @@
+var ptis = PtiStore();
+var currentlySelectedPti;
+var currentlyEditing;
+
+function loadSelectBox() {
+  $('select').append($('<option>').text('Choose a PTI'));
+
+  _.each(PtiStore(), function(pti) {
+    $('select').append($('<option>').attr('value', pti.key).text(pti.name));
+  });
+}
+
+function displayPti(pti) {
+  if(!pti) {
+    $('.alert').show();
+    $('#grids').hide();
+    return;
+  }
+
+  $('.alert').hide();
+  $('#grids').removeClass("hide").show();
+  $('#grids tbody > *').remove();
+  currentlySelectedPti = pti;
+
+  for(var i in pti.observations) {
+    var observation = pti.observations[i];
+
+    var $order = $('<td>').text(observation.order);
+    var $name = $('<td>').text(observation.name);
+    var $actions = $('<td>').append($('<button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#observationModalForm" data-observation-key="' + observation.key + '"><span class="glyphicon glyphicon-pencil"></span></button>'));
+    $('#observation-grid tbody').append($('<tr>').append($order, $name, $actions));
+
+    for(var j in observation.directives) {
+      var directive = observation.directives[j];
+
+      var $directiveOrder = $order.clone();
+      var $directiveName = $('<td>').text(directive.name);
+      var $directiveActions = $('<td>').append($('<button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#observationModalForm" data-observation-key="' + observation.key + '"><span class="glyphicon glyphicon-pencil"></span></button>'));
+      $('#directive-grid tbody').append($('<tr>').append($directiveOrder, $directiveName, $directiveActions));
+    }
+  }
+}
+
+
+
+$(function() {
+  loadSelectBox();
+
+  $('select').on('change', function() {
+    var ptiKey = $(this).val();
+    var pti = _.find(ptis, function(pti) {
+      return pti.key == ptiKey;
+    });
+
+    displayPti(pti);
+  });
+
+  $('#observationModalForm').on('show.bs.modal', function (event) {
+      debugger;
+      var button = $(event.relatedTarget);
+      var ptiKey = button.data('pti-key');
+      var observation = _.find(ptis, function(pti) {
+        return pti.key == ptiKey;
+      });
+
+      var $modal = $(this);
+      preFillForm($modal, observation);
+
+  });
+
+  $('#observationModalForm').on('hide.bs.modal', function(e) {
+    displayPti($('select').val());
+  });
+
+});
